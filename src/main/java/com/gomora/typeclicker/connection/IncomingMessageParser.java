@@ -39,6 +39,5 @@ public class IncomingMessageParser {
             mineLocations.add(new ImmutablePair<>(Integer.parseInt(split[mine]), Integer.parseInt(split[mine+1])));
         }
         return mineLocations;
-
     }
 }

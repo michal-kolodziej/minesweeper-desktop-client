@@ -5,7 +5,8 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class FixedLocationEffect implements LocationEffect {
-    private final int value;
+    private final int x;
+    private final int y;
 
     @Override
     public void update() {}
@@ -16,7 +17,12 @@ public class FixedLocationEffect implements LocationEffect {
     }
 
     @Override
-    public int getValue() {
-        return value;
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
     }
 }

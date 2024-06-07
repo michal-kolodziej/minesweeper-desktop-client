@@ -38,19 +38,21 @@ public class SpriteLoader {
 
         MINESWEEPER_X = drawingArea.loadImage("sprites/minesweeper_default/MINESWEEPER_X.png");
 
-        MINESWEEPER_0.resize(32,32);
-        MINESWEEPER_1.resize(32,32);
-        MINESWEEPER_2.resize(32,32);
-        MINESWEEPER_3.resize(32,32);
-        MINESWEEPER_4.resize(32,32);
-        MINESWEEPER_5.resize(32,32);
-        MINESWEEPER_6.resize(32,32);
-        MINESWEEPER_7.resize(32,32);
-        MINESWEEPER_8.resize(32,32);
-        MINESWEEPER_C.resize(32,32);
-        MINESWEEPER_F.resize(32,32);
-        MINESWEEPER_M.resize(32,32);
-        MINESWEEPER_X.resize(32,32);
+        final int resizeW = 48;
+        final int resizeH = 48;
+        MINESWEEPER_0.resize(resizeW,resizeH);
+        MINESWEEPER_1.resize(resizeW,resizeH);
+        MINESWEEPER_2.resize(resizeW,resizeH);
+        MINESWEEPER_3.resize(resizeW,resizeH);
+        MINESWEEPER_4.resize(resizeW,resizeH);
+        MINESWEEPER_5.resize(resizeW,resizeH);
+        MINESWEEPER_6.resize(resizeW,resizeH);
+        MINESWEEPER_7.resize(resizeW,resizeH);
+        MINESWEEPER_8.resize(resizeW,resizeH);
+        MINESWEEPER_C.resize(resizeW,resizeH);
+        MINESWEEPER_F.resize(resizeW,resizeH);
+        MINESWEEPER_M.resize(resizeW,resizeH);
+        MINESWEEPER_X.resize(resizeW,resizeH);
     }
 
     public PImage MINESWEEPER_0;

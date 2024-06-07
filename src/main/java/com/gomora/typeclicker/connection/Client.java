@@ -32,7 +32,7 @@ public class Client {
                 while ((response = in.readLine()) != null) {
                     onServerMessageReceived.accept(response);
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             } finally {
                 try {

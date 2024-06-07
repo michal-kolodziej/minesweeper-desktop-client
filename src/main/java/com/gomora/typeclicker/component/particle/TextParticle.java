@@ -10,8 +10,7 @@ import java.util.List;
 
 @Builder
 public class TextParticle implements Particle {
-    private final LocationEffect xCoordLocationEffect;
-    private final LocationEffect yCoordLocationEffect;
+    private final LocationEffect locationEffect;
     private final SizeEffect sizeEffect;
     @Singular
     private final List<Particle> appearanceEffects;
@@ -23,19 +22,17 @@ public class TextParticle implements Particle {
         update();
         appearanceEffects.forEach(e -> e.draw(drawingArea));
         drawingArea.textSize(sizeEffect.getSize());
-        drawingArea.text(text, xCoordLocationEffect.getValue(), yCoordLocationEffect.getValue());
+        drawingArea.text(text, locationEffect.getX(), locationEffect.getY());
     }
 
     private void update() {
-        yCoordLocationEffect.update();
-        xCoordLocationEffect.update();
+        locationEffect.update();
         sizeEffect.update();
     }
 
     @Override
     public boolean isAlive() {
-        return xCoordLocationEffect.keepParticleAlive() &&
-                yCoordLocationEffect.keepParticleAlive() &&
+        return locationEffect.keepParticleAlive() &&
                 sizeEffect.keepParticleAlive() &&
                 appearanceEffects.stream().allMatch(Particle::isAlive);
     }

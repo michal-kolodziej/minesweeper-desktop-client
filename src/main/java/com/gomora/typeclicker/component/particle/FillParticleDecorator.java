@@ -8,21 +8,21 @@ import processing.core.PApplet;
 @Builder
 public class FillParticleDecorator implements Particle {
     private final ColorEffect colorEffect;
-    private final AlphaEffect fadingEffect;
+    private final AlphaEffect alphaEffect;
 
     @Override
     public void draw(PApplet drawingArea) {
         update();
-        drawingArea.fill(colorEffect.getR(), colorEffect.getG(), colorEffect.getB(), fadingEffect.getAlpha());
+        drawingArea.fill(colorEffect.getR(), colorEffect.getG(), colorEffect.getB(), alphaEffect.getAlpha());
     }
 
     private void update() {
         colorEffect.update();
-        fadingEffect.update();
+        alphaEffect.update();
     }
 
     @Override
     public boolean isAlive() {
-        return fadingEffect.keepParticleAlive() && colorEffect.keepParticleAlive();
+        return alphaEffect.keepParticleAlive() && colorEffect.keepParticleAlive();
     }
 }

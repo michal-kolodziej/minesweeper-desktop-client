@@ -2,7 +2,7 @@ package com.gomora.typeclicker.component.game;
 
 import com.gomora.typeclicker.GamePApplet;
 import com.gomora.typeclicker.component.DrawableComponent;
-import com.gomora.typeclicker.component.TextButton;
+import com.gomora.typeclicker.component.ImgButton;
 import com.gomora.typeclicker.component.graphics.sprite.SpriteLoader;
 import com.gomora.typeclicker.component.particle.ParticleManager;
 import com.gomora.typeclicker.connection.Client;
@@ -58,13 +58,10 @@ public class Game extends DrawableComponent {
                 int coll = col;
                 String cellText = board[row][col];
                 cells[row][col] = new Cell(cellText,
-//                        new ImgButton(x + (col * 40) + 5, y + (row * 40) + 5, drawingArea, 32, 32,
-//                                () -> client.sendMessageToServer(OutgoingMessageFactory.click(roww, coll)),
-//                                () -> client.sendMessageToServer(OutgoingMessageFactory.flag(roww, coll)),
-//                                pickImgBasedOnText(drawingArea.getSpriteLoader(), cellText))
-                        new TextButton(x + (col * 40) + 5, y + (row * 40) + 5, drawingArea, 32, 32,
+                        new ImgButton(x + (col * 48) + 5, y + (row * 48) + 5, drawingArea, 48, 48,
                                 () -> client.sendMessageToServer(OutgoingMessageFactory.click(roww, coll)),
-                                () -> client.sendMessageToServer(OutgoingMessageFactory.flag(roww, coll)), convertCellText(cellText))
+                                () -> client.sendMessageToServer(OutgoingMessageFactory.flag(roww, coll)),
+                                pickImgBasedOnText(drawingArea.getSpriteLoader(), cellText))
                 );
             }
         }
@@ -78,6 +75,8 @@ public class Game extends DrawableComponent {
             case "M":
                 return spriteLoader.MINESWEEPER_M;
             case "E":
+                return spriteLoader.MINESWEEPER_X;
+            case "0":
                 return spriteLoader.MINESWEEPER_0;
             case "1":
                 return spriteLoader.MINESWEEPER_1;
@@ -106,12 +105,10 @@ public class Game extends DrawableComponent {
                     final int row = mine.getLeft();
                     final int col = mine.getRight();
                     board[mine.getLeft()][mine.getRight()] = new Cell("M",
-//                            new ImgButton(x + (col * 40) + 5, y + (row * 40) + 5, drawingArea, 32, 32, () -> {
-//                            }, () -> {
-//                            }, pickImgBasedOnText(drawingArea.getSpriteLoader(), "M"))
-                            new TextButton(x + (col * 40) + 5, y + (row * 40) + 5, drawingArea, 32, 32, () -> {
-                            }, () -> {
-                            }, "M")
+                            new ImgButton(x + (col * 48) + 5, y + (row * 48) + 5, drawingArea, 48, 48,
+                                    () -> client.sendMessageToServer(OutgoingMessageFactory.click(row, col)),
+                                    () -> client.sendMessageToServer(OutgoingMessageFactory.flag(row, col))
+                                    , pickImgBasedOnText(drawingArea.getSpriteLoader(), "M"))
                     );
                 });
 

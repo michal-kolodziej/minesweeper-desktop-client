@@ -3,15 +3,15 @@ package com.gomora.typeclicker.component.particle.effect.impl;
 import com.gomora.typeclicker.component.particle.effect.AlphaEffect;
 
 public class AlphaFadingEffect implements AlphaEffect {
-    private final int fadingFactor;
-    private int alpha;
+    private final float fadingFactor;
+    private float alpha;
 
-    public AlphaFadingEffect(int startingAlpha, int fadingFactor) {
+    public AlphaFadingEffect(int startingAlpha, float fadingFactor) {
         this.alpha = startingAlpha;
         this.fadingFactor = fadingFactor;
     }
 
-    public AlphaFadingEffect(int fadingFactor) {
+    public AlphaFadingEffect(float fadingFactor) {
         this(255, fadingFactor);
     }
 
@@ -26,6 +26,6 @@ public class AlphaFadingEffect implements AlphaEffect {
 
     @Override
     public int getAlpha() {
-        return alpha;
+        return (int) alpha;
     }
 }

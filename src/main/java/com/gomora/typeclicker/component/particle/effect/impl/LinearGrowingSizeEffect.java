@@ -15,7 +15,7 @@ public class LinearGrowingSizeEffect implements SizeEffect {
 
     @Override
     public boolean keepParticleAlive() {
-        return false;
+        return true;
     }
 
     @Override
