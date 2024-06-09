@@ -73,7 +73,7 @@ public class Game extends DrawableComponent {
             case "F":
                 return spriteLoader.MINESWEEPER_F;
             case "M":
-                return spriteLoader.MINESWEEPER_M;
+                return spriteLoader.MINESWEEPER_M2;
             case "E":
                 return spriteLoader.MINESWEEPER_X;
             case "0":

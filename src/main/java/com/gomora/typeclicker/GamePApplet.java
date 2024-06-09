@@ -3,7 +3,10 @@ package com.gomora.typeclicker;
 import com.gomora.typeclicker.component.game.Game;
 import com.gomora.typeclicker.component.graphics.sprite.SpriteLoader;
 import com.gomora.typeclicker.component.particle.*;
-import com.gomora.typeclicker.component.particle.effect.impl.*;
+import com.gomora.typeclicker.component.particle.effect.impl.AlphaFadingEffect;
+import com.gomora.typeclicker.component.particle.effect.impl.FixedSizeEffect;
+import com.gomora.typeclicker.component.particle.effect.impl.LinearMoveLocationEffect;
+import com.gomora.typeclicker.component.particle.effect.impl.RainbowColorEffect;
 import com.gomora.typeclicker.connection.Client;
 import com.gomora.typeclicker.connection.IncomingMessageParser;
 import com.gomora.typeclicker.connection.OutgoingMessageFactory;
@@ -34,8 +37,8 @@ public class GamePApplet extends PApplet {
     private SpriteLoader spriteLoader;
     private boolean gameOver = false;
 
-    GamePApplet() {
-
+    GamePApplet(Config config) {
+        client = new Client(config.getServerIp(), config.getServerPort(), this::onServerMessageReceived);
     }
 
     private void onServerMessageReceived(String message) {
@@ -85,17 +88,17 @@ public class GamePApplet extends PApplet {
         size(1440 + 10, 768 + 10);
     }
 
+
     @Override
     public void setup() {
         frameRate(60);
         spriteLoader = new SpriteLoader(this);
         particleManagerComponent = new ParticleManagerComponent(0, 0, this);
-        client = new Client("localhost", 31415, this::onServerMessageReceived);
         game = new Game(0, 0, this, particleManagerComponent, client);
         sendMouseMessageMemoized = Suppliers.memoizeWithExpiration(() -> {
             client.sendMessageToServer(OutgoingMessageFactory.mousePos(mouseX, mouseY));
             return null;
-        }, 10, TimeUnit.MILLISECONDS);
+        }, 20, TimeUnit.MILLISECONDS);
 
         spriteLoader.loadImages();
         try {
