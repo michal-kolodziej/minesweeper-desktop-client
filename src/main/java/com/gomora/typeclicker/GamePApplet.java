@@ -50,8 +50,8 @@ public class GamePApplet extends PApplet {
                 game.setBoard(board);
             }
         } else if (message.startsWith("MOUSEPOS")) {
-            var coordPair = IncomingMessageParser.mousePos(message);
-            playerCursorPositionManager.updateCoordsForClient(coordPair.getRight(), new ImmutablePair<>(coordPair.getLeft(), coordPair.getMiddle()));
+            var mousePosMsg = IncomingMessageParser.mousePos(message);
+            playerCursorPositionManager.updateCoordsForClient(mousePosMsg.getClientId(), new ImmutablePair<>(mousePosMsg.getX(), mousePosMsg.getY()));
         } else if (message.startsWith("GAMEOVER")) {
             List<Pair<Integer, Integer>> mines = IncomingMessageParser.gameOver(message);
             game.setMines(mines);

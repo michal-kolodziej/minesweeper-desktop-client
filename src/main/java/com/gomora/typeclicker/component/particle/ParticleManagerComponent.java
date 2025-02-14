@@ -5,6 +5,7 @@ import com.gomora.typeclicker.component.DrawableComponent;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -14,7 +15,7 @@ public class ParticleManagerComponent extends DrawableComponent implements Parti
 
     public ParticleManagerComponent(int x, int y, GamePApplet drawingArea) {
         super(x, y, drawingArea);
-        this.particlesBeingDrawn = new ArrayList<>();
+        this.particlesBeingDrawn = Collections.synchronizedList(new ArrayList<>());
     }
 
     public void submitParticle(Particle particle) {

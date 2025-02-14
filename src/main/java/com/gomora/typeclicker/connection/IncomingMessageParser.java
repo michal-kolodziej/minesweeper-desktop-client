@@ -1,12 +1,10 @@
 package com.gomora.typeclicker.connection;
 
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
-import org.apache.commons.lang3.tuple.Pair;
-import org.apache.commons.lang3.tuple.Triple;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 public class IncomingMessageParser {
     public static String[][] boardUpdate(String message) {
@@ -22,12 +20,12 @@ public class IncomingMessageParser {
         return board;
     }
 
-    public static Triple<Integer, Integer, String> mousePos(String message) {
+    public static MousePosIncomingMessage mousePos(String message) {
         String[] split = message.split(",");
         int x = Integer.parseInt(split[2]);
         int y = Integer.parseInt(split[4]);
         String clientId = split[6];
-        return new ImmutableTriple<>(x, y, clientId);
+        return new MousePosIncomingMessage(x, y, clientId);
     }
 
     public static List<Pair<Integer, Integer>> gameOver(String message) {
@@ -35,8 +33,8 @@ public class IncomingMessageParser {
         String username = split[2];
         Pair<Integer, Integer> clickedMineCoords = new ImmutablePair<>(Integer.parseInt(split[4]), Integer.parseInt(split[6]));
         List<Pair<Integer, Integer>> mineLocations = new ArrayList<>();
-        for(int mine = 8; mine < split.length; mine +=2){
-            mineLocations.add(new ImmutablePair<>(Integer.parseInt(split[mine]), Integer.parseInt(split[mine+1])));
+        for (int mine = 8; mine < split.length; mine += 2) {
+            mineLocations.add(new ImmutablePair<>(Integer.parseInt(split[mine]), Integer.parseInt(split[mine + 1])));
         }
         return mineLocations;
     }
