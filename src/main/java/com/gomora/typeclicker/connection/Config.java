@@ -1,4 +1,4 @@
-package com.gomora.typeclicker;
+package com.gomora.typeclicker.connection;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

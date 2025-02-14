@@ -1,5 +1,6 @@
 package com.gomora.typeclicker;
 
+import com.gomora.typeclicker.connection.Config;
 import lombok.SneakyThrows;
 import processing.core.PApplet;
 

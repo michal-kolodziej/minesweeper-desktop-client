@@ -7,10 +7,7 @@ import com.gomora.typeclicker.component.particle.effect.impl.AlphaFadingEffect;
 import com.gomora.typeclicker.component.particle.effect.impl.FixedSizeEffect;
 import com.gomora.typeclicker.component.particle.effect.impl.LinearMoveLocationEffect;
 import com.gomora.typeclicker.component.particle.effect.impl.RainbowColorEffect;
-import com.gomora.typeclicker.connection.Client;
-import com.gomora.typeclicker.connection.IncomingMessageParser;
-import com.gomora.typeclicker.connection.OutgoingMessageFactory;
-import com.gomora.typeclicker.connection.PlayerCursorPositionManager;
+import com.gomora.typeclicker.connection.*;
 import com.google.common.base.Suppliers;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -31,7 +28,7 @@ public class GamePApplet extends PApplet {
 
     private final PlayerCursorPositionManager playerCursorPositionManager = new PlayerCursorPositionManager();
     private ParticleManagerComponent particleManagerComponent;
-    private Client client;
+    private final Client client;
     private Game game;
     private Supplier<Object> sendMouseMessageMemoized;
     private SpriteLoader spriteLoader;
@@ -91,6 +88,7 @@ public class GamePApplet extends PApplet {
 
     @Override
     public void setup() {
+        frame.setTitle("Minesweeper");
         frameRate(60);
         spriteLoader = new SpriteLoader(this);
         particleManagerComponent = new ParticleManagerComponent(0, 0, this);
@@ -114,7 +112,8 @@ public class GamePApplet extends PApplet {
     public void draw() {
         background(20);
         game.draw();
-        playerCursorPositionManager.clientIdToMousePositionCoordMap.forEach((key1, coords) -> rect(coords.getLeft(), coords.getRight(), 10, 10));
+        playerCursorPositionManager.clientIdToMousePositionCoordMap.forEach(
+                (key1, coords) -> rect(coords.getX(), coords.getY(), 10, 10));
         particleManagerComponent.draw();
     }
 
